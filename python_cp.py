@@ -1,12 +1,3 @@
-class Array:
-    @staticmethod
-    def is_sorted(_array):
-        for i in range(len(_array) - 1):
-            if _array[i] > _array[i + 1]:
-                return False
-        return True
-
-
 class Number:
     max = float('inf')
     min = -float('inf')
@@ -30,12 +21,18 @@ class This:
         self.count = 0
 
 
-class ListPlusPlus(list):
+class MyList(list):
     def is_empty(self):
         return not self
 
     def last_index(self):
         return len(self) - 1
+
+    def is_sorted(self, key=lambda x: x):
+        for i in range(len(self) - 1):
+            if key(self[i]) > key(self[i + 1]):
+                return False
+        return True
 
     # Initialize n-dimensional list with
     # result of a lambda or just a value
@@ -51,36 +48,32 @@ class ListPlusPlus(list):
         invalid_sizes_value = list(filter(lambda x: x <= 0, size))
         if len(invalid_sizes_value) > 0:
             raise ValueError('Sizes should be positive.')
-        return ListPlusPlus._of(size[::-1], value)
+        return MyList._of(size[::-1], value)
 
     @classmethod
     def _of(cls, size, value):
         if len(size) == 1:
             try:
-                return ListPlusPlus(value() for _ in range(size[0]))
+                return MyList(value() for _ in range(size[0]))
             except TypeError:
-                return ListPlusPlus(value for _ in range(size[0]))
+                return MyList(value for _ in range(size[0]))
         else:
             count = size.pop()
-            return ListPlusPlus(
-                ListPlusPlus._of(size[:], value) for _ in range(count)
+            return MyList(
+                MyList._of(size[:], value) for _ in range(count)
             )
 
-    # overriding so that list++ is returned instead of list
+    # overriding so that MyList is returned instead of list
     def copy(self):
-        return ListPlusPlus(list.copy(self))
+        return MyList(list.copy(self))
 
-    # overriding so that list++ is returned instead of list
-    def __getitem__(self, item):
-        return ListPlusPlus(list.__getitem__(self, item))
-
-    # overriding so that list++ is returned instead of list
+    # overriding so that MyList is returned instead of list
     def __add__(self, other):
-        return ListPlusPlus(list.__add__(self, other))
+        return MyList(list.__add__(self, other))
 
-    # overriding so that list++ is returned instead of list
+    # overriding so that MyList is returned instead of list
     def __mul__(self, other):
-        return ListPlusPlus(list.__mul__(self, other))
+        return MyList(list.__mul__(self, other))
 
 
 def solve():
