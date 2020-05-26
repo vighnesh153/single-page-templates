@@ -37,6 +37,35 @@ class ListPlusPlus(list):
     def last_index(self):
         return len(self) - 1
 
+    # Initialize n-dimensional list with
+    # result of a lambda or just a value
+    @classmethod
+    def of(cls, size, value):
+        if not isinstance(size, list):
+            raise ValueError('Expected size to be a list of dimensions.')
+        if len(size) == 0:
+            raise ValueError('Size cannot be empty.')
+        invalid_sizes_type = list(filter(lambda x: not isinstance(x, int), size))
+        if len(invalid_sizes_type) > 0:
+            raise ValueError('Sizes should be integers.')
+        invalid_sizes_value = list(filter(lambda x: x <= 0, size))
+        if len(invalid_sizes_value) > 0:
+            raise ValueError('Sizes should be positive.')
+        return ListPlusPlus._of(size[::-1], value)
+
+    @classmethod
+    def _of(cls, size, value):
+        if len(size) == 1:
+            try:
+                return ListPlusPlus(value() for _ in range(size[0]))
+            except TypeError:
+                return ListPlusPlus(value for _ in range(size[0]))
+        else:
+            count = size.pop()
+            return ListPlusPlus(
+                ListPlusPlus._of(size[:], value) for _ in range(count)
+            )
+
     # overriding so that list++ is returned instead of list
     def copy(self):
         return ListPlusPlus(list.copy(self))
