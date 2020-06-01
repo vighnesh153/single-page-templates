@@ -19,6 +19,8 @@ class Number:
 class This:
     def __init__(self):
         self.max = self.min = self.sum = self.count = None
+        self.set = set()
+        self.map = dict()
         self.reset()
 
     def update_if_max(self, value):
