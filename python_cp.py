@@ -3,8 +3,12 @@ import inspect
 
 class Input:
     @classmethod
-    def integer_array(cls):
+    def array_integer(cls):
         return MyList(map(int, input().split()))
+
+    @classmethod
+    def integer(cls):
+        return int(input())
 
 
 class Number:
@@ -40,8 +44,12 @@ class MyList(list):
         return not self
 
     @property
-    def last_index(self):
-        return len(self) - 1
+    def first(self):
+        return self[0]
+
+    @property
+    def last(self):
+        return self[-1]
 
     @property
     def is_sorted(self, key=lambda x: x):
