@@ -1,6 +1,12 @@
 import inspect
 
 
+class Input:
+    @classmethod
+    def integer_array(cls):
+        return MyList(map(int, input().split()))
+
+
 class Number:
     max = float('inf')
     min = -float('inf')
