@@ -1,3 +1,6 @@
+import inspect
+
+
 class Number:
     max = float('inf')
     min = -float('inf')
@@ -22,17 +25,44 @@ class This:
 
 
 class MyList(list):
+    @property
+    def length(self):
+        return len(self)
+
+    @property
     def is_empty(self):
         return not self
 
+    @property
     def last_index(self):
         return len(self) - 1
 
+    @property
     def is_sorted(self, key=lambda x: x):
         for i in range(len(self) - 1):
             if key(self[i]) > key(self[i + 1]):
                 return False
         return True
+
+    def push(self, element):
+        return self.append(element)
+
+    def for_each(self, callback):
+        if not callable(callback):
+            raise ValueError(f'Expected a function, got {callback} instead.')
+        arg_count = len(inspect.getfullargspec(callback).args)
+        for i, item in enumerate(self):
+            arguments = []
+            if arg_count >= 1:
+                arguments.append(item)
+            if arg_count >= 2:
+                arguments.append(i)
+            callback(*arguments)
+
+    def map(self, callback):
+        if not callable(callback):
+            raise ValueError(f'Expected a function, got {callback} instead.')
+        return MyList(map(callback, self))
 
     # Initialize n-dimensional list with
     # result of a lambda or just a value
