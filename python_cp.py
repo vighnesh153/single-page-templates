@@ -5,15 +5,31 @@ class Input:
     @classmethod
     def array_integer(cls):
         return MyList(map(int, input().split()))
+    
+    @classmethod
+    def array_string(cls):
+        return input().split()
 
     @classmethod
     def integer(cls):
         return int(input())
+    
+    @classmethod
+    def float(cls):
+        return float(input())
+    
+    @classmethod
+    def string(cls):
+        return input()
 
 
 class Number:
     max = float('inf')
     min = -float('inf')
+
+    @classmethod
+    def is_digit(cls, character):
+        return character in "0123456789"
 
 
 class This:
@@ -120,6 +136,36 @@ class MyList(list):
     # overriding so that MyList is returned instead of list
     def __mul__(self, other):
         return MyList(list.__mul__(self, other))
+
+
+class String(str):
+    @property
+    def length(self):
+        return len(self)
+
+    @property
+    def is_empty(self):
+        return not self
+
+    @property
+    def first(self):
+        return self[0]
+
+    @property
+    def last(self):
+        return self[-1]
+
+    @property
+    def is_sorted(self, key=lambda x: x):
+        for i in range(len(self) - 1):
+            if key(self[i]) > key(self[i + 1]):
+                return False
+        return True
+    
+    _alphabets = "abcdefghijklmnopqrstuvwxyz"
+    @classmethod
+    def is_alphabet(cls, ch):
+        return ch in String._alphabets
 
 
 def solve():
