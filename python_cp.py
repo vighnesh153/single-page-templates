@@ -8,7 +8,7 @@ class Input:
     
     @classmethod
     def array_string(cls):
-        return input().split()
+        return MyList(map(String, input().split()))
 
     @classmethod
     def integer(cls):
@@ -20,7 +20,7 @@ class Input:
     
     @classmethod
     def string(cls):
-        return input()
+        return String(input())
 
 
 class Number:
@@ -139,6 +139,8 @@ class MyList(list):
 
 
 class String(str):
+    alphabets = "abcdefghijklmnopqrstuvwxyz"
+   
     @property
     def length(self):
         return len(self)
@@ -162,10 +164,9 @@ class String(str):
                 return False
         return True
     
-    _alphabets = "abcdefghijklmnopqrstuvwxyz"
     @classmethod
     def is_alphabet(cls, ch):
-        return ch in String._alphabets
+        return ch in String.alphabets
 
 
 def solve():
