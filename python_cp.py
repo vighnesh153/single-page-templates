@@ -183,7 +183,4 @@ def main(*args):
     pass
 
 
-inputs = [
-
-]
-print(main(*inputs))
+main()
