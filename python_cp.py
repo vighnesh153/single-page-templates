@@ -39,11 +39,11 @@ class This:
         self.map = dict()
         self.reset()
 
-    def update_if_max(self, value):
-        self.max = max(self.max, value)
+    def update_if_max(self, *values):
+        self.max = max(self.max, *values)
 
-    def update_if_min(self, value):
-        self.min = min(self.min, value)
+    def update_if_min(self, *values):
+        self.min = min(self.min, *values)
 
     def reset(self):
         self.min = Number.max
