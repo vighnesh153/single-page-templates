@@ -1,34 +1,34 @@
 import inspect
 
 
-class Input:
-    @classmethod
-    def array_integer(cls):
-        return MyList(map(int, input().split()))
+Infinity = float('inf')
+
+
+def integer_array_input():
+    return MyList(map(int, input().split()))
+
+
+def string_array_input():
+    return MyList(map(String, input().split()))
+
+
+def integer_input():
+    return int(input())
+
+
+def float_input():
+    return float(input())
     
-    @classmethod
-    def array_string(cls):
-        return MyList(map(String, input().split()))
 
-    @classmethod
-    def integer(cls):
-        return int(input())
-    
-    @classmethod
-    def float(cls):
-        return float(input())
-    
-    @classmethod
-    def string(cls):
-        return String(input())
+def string():
+    return String(input())
 
 
-class Number:
-    max = float('inf')
-    min = -float('inf')
+def test_case_count():
+    return range(integer_input())
 
-    @classmethod
-    def is_digit(cls, character):
+
+def is_digit(cls, character):
         return character in "0123456789"
 
 
@@ -46,8 +46,8 @@ class This:
         self.min = min(self.min, *values)
 
     def reset(self):
-        self.min = Number.max
-        self.max = Number.min
+        self.min = Infinity
+        self.max = -Infinity
         self.sum = 0
         self.count = 0
 
@@ -167,10 +167,6 @@ class String(str):
     @classmethod
     def is_alphabet(cls, ch):
         return ch in String.alphabets
-
-
-def test_case_count():
-    return range(Input.integer())
 
 
 def solve():
