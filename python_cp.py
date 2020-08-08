@@ -28,7 +28,7 @@ def test_case_count():
     return range(integer_input())
 
 
-def is_digit(cls, character):
+def is_digit(character):
     return character in "0123456789"
 
 
