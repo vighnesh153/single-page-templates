@@ -20,7 +20,7 @@ def float_input():
     return float(input())
     
 
-def string():
+def string_input():
     return String(input())
 
 
