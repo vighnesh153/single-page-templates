@@ -29,7 +29,7 @@ def test_case_count():
 
 
 def is_digit(cls, character):
-        return character in "0123456789"
+    return character in "0123456789"
 
 
 class This:
