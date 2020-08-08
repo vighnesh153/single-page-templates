@@ -169,6 +169,10 @@ class String(str):
         return ch in String.alphabets
 
 
+def test_case_count():
+    return range(Input.integer())
+
+
 def solve():
     this = This()
 
