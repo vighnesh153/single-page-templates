@@ -48,8 +48,17 @@ def is_prime(n):
     return True
 
 
-for i in range(2, 20):
-    print(i, is_prime(i))
+def sieve_of_eratosthenes(n):
+    array = [True] * (n + 1)
+
+    i = 2
+    while i * i <= n:
+        if array[i]:
+            for j in range(i * i, n + 1, i):
+                array[j] = False
+        i += 1
+    
+    return [i for i in range(2, n + 1) if array[i]]
 
 
 class This:
