@@ -1,7 +1,11 @@
 import inspect
+import sys
 
 
 Infinity = float('inf')
+
+# Default is around 1000
+sys.setrecursionlimit(110000)
 
 
 def integer_array_input():
