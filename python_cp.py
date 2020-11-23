@@ -36,6 +36,14 @@ def is_digit(character):
     return character in "0123456789"
 
 
+def is_odd(n):
+    return n % 2 == 1
+
+
+def is_even(n):
+    return n % 2 == 0
+
+
 def is_prime(n):
     if n <= 3:
         return n > 1
